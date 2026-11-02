@@ -1,2 +1,2 @@
 # TODO: añade aquí la dependencia necesaria para usar Material for MkDocs.
-mkdocs
+mkdocs-material

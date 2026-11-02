@@ -14,15 +14,19 @@ Recuerda que en Markdown los bloques de código con resaltado de sintaxis se
 delimitan con triple acento grave seguido del nombre del lenguaje, por
 ejemplo:
 
-    ```bash
-    comando
-    ```
+   un bloque bash que contenga el comando
 Consulta también "__init__.py" en esta misma carpeta para completar la
 parte en Python de este ejercicio.
 -->
 
 # Instalación
 
-TODO: añade un bloque de código ```bash con el comando de instalación.
+```bash
+pip install -r requirements.txt
+```
 
-TODO: añade un bloque de código ```python con un script de ejemplo.
+```python
+import os
+
+print("Instalación completada.")
+```

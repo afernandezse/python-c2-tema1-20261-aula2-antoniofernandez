@@ -25,13 +25,16 @@ __all__ = ["Agenda", "Contacto", "ContactoNoEncontradoError", "cargar_agenda_ini
 
 def cargar_agenda_inicial():
     """
-    TODO: completa este docstring en formato reST (estilo Sphinx).
-    Debe describir que crea una "Agenda" de ejemplo con, al menos, tres
-    contactos, documentando el valor devuelto con ":return:" y ":rtype:".
+    Crea una agenda de ejemplo con varios contactos.
+
+    :return: Una agenda de ejemplo con al menos tres contactos.
+    :rtype: Agenda
     """
-    # TODO: crea una "Agenda" (con el nombre que quieras) y añade al
-    # menos tres "Contacto" de ejemplo. Devuelve la agenda creada.
-    raise NotImplementedError
+    agenda = Agenda("Agenda de ejemplo")
+    agenda.añadir_contacto(Contacto("Ana", "600111222"))
+    agenda.añadir_contacto(Contacto("Bruno", "600333444"))
+    agenda.añadir_contacto(Contacto("Carla", "600555666"))
+    return agenda
 
 
 if __name__ == "__main__":

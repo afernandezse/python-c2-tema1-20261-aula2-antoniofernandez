@@ -22,4 +22,7 @@ html_theme = "sphinx_rtd_theme"
 
 # TODO: añade aquí la clave "html_theme_options" con "logo_only" y
 # "navigation_depth".
-html_theme_options = {}
+html_theme_options = {
+    "logo_only": True,
+    "navigation_depth": 4
+}

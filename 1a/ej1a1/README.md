@@ -28,9 +28,14 @@ Desde la carpeta `1a/`:
 python -m pytest ej1a1_test.py -v
 ```
 
-Y, si quieres comprobar de verdad que el servidor de MkDocs arranca (una
-vez tengas `mkdocs` instalado y un proyecto con `docs/`), puedes ejecutar
-el comando que construya tu función `comando_mkdocs_serve`, por ejemplo:
+Para arrancar el servidor de MkDocs, con `mkdocs` instalado, ejecuta desde
+la raíz del repositorio:
+
+```bash
+mkdocs serve --config-file 1a/ej1a1/mkdocs.yml --dev-addr 127.0.0.1:8000
+```
+
+Si tu terminal ya está en `1a/ej1a1/`, ejecuta directamente:
 
 ```bash
 mkdocs serve --dev-addr 127.0.0.1:8000

@@ -28,6 +28,14 @@ TODO: añade aquí la directiva ``.. automodule:: ej1g1.contacto`` (con
 ``:members:``) para generar automáticamente la documentación del módulo
 "ej1g1.contacto".
 
+..automodule:: ej1g1.contacto
+   :members:
+
+   
+
 TODO: añade aquí la directiva ``.. automodule:: ej1g1.agenda`` (con
 ``:members:``) para generar automáticamente la documentación del módulo
 "ej1g1.agenda".
+
+..automodule:: ej1g1.agenda
+   :members:

@@ -22,8 +22,6 @@ parte en Python de este ejercicio.
 
 # Referencia de la API
 
-TODO: añade aquí la directiva "::: ej1c1.libro" para generar
-automáticamente la documentación del módulo "ej1c1.libro".
+::: ej1c1.libro
 
-TODO: añade aquí la directiva "::: ej1c1.coleccion" para generar
-automáticamente la documentación del módulo "ej1c1.coleccion".
+::: ej1c1.coleccion

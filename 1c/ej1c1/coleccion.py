@@ -21,6 +21,8 @@ class ColeccionLibros:
         """
         # TODO: guarda "nombre" como atributo.
         # TODO: inicializa una lista vacía donde se guardarán los libros
+        self._nombre = nombre
+        self._libros = []
         # (por ejemplo, en un atributo "_libros").
         pass
 
@@ -31,6 +33,7 @@ class ColeccionLibros:
         sección "Args:".
         """
         # TODO: añade "libro" a la lista interna de libros.
+        self._libros.append(libro)
         pass
 
     def buscar_por_isbn(self, isbn):
@@ -44,8 +47,12 @@ class ColeccionLibros:
         """
         # TODO: recorre la lista interna de libros y devuelve el que
         # tenga el ISBN indicado.
+        for libro in self._libros:
+            if libro.isbn == isbn:
+                return libro
         # TODO: si no se encuentra ningún libro con ese ISBN, lanza
         # "LibroNoEncontradoError".
+        raise LibroNoEncontradoError(f"No se encontró ningún libro con ISBN {isbn}.")
         pass
 
     def buscar_por_autor(self, autor):
@@ -57,7 +64,8 @@ class ColeccionLibros:
         """
         # TODO: devuelve una lista con todos los libros cuyo autor
         # coincida exactamente con "autor".
-        pass
+        return [libro for libro in self._libros if libro.autor == autor]
+
 
     def prestar_libro(self, isbn):
         """
@@ -70,7 +78,8 @@ class ColeccionLibros:
         """
         # TODO: busca el libro por ISBN (reutiliza "buscar_por_isbn") y
         # llama a su método "prestar()", devolviendo el resultado.
-        pass
+        libro = self.buscar_por_isbn(isbn)
+        return libro.prestar()
 
     def listar_disponibles(self):
         """
@@ -80,7 +89,7 @@ class ColeccionLibros:
         """
         # TODO: devuelve una lista con todos los libros cuyo atributo
         # "prestado" sea False.
-        pass
+        return [libro for libro in self._libros if not libro.prestado]
 
     def __len__(self):
         """
@@ -89,4 +98,4 @@ class ColeccionLibros:
         colección, documentándolo en una sección "Returns:".
         """
         # TODO: devuelve el número de libros de la colección.
-        pass
+        return len(self._libros)

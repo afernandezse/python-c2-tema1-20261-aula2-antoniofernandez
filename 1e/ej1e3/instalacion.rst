@@ -28,12 +28,30 @@
 Instalación
 ===========
 
-TODO: añade un bloque ``.. code-block:: bash`` con el comando de
-instalación.
 
-TODO: añade un bloque ``.. code-block:: python`` con un script de
-ejemplo.
+.. code-block:: bash
 
-TODO: añade una admonition ``.. note::`` con una nota.
+   pip install -r requirements.txt
 
-TODO: añade una admonition ``.. warning::`` con una advertencia.
+
+
+.. code-block:: python
+
+   def saludo(nombre):
+      print(f"Hola, {nombre}!")
+
+   if __name__ == "__main__":
+      saludo("Mundo")
+
+
+.. note::
+
+   Recuerda que debes tener Python 3.6 o superior instalado en tu sistema
+   para ejecutar este proyecto correctamente.
+
+
+.. warning::
+
+   Asegúrate de ejecutar los comandos en un entorno virtual para evitar
+   conflictos con otras dependencias de Python que puedas tener
+   instaladas globalmente.

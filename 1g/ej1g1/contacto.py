@@ -1,59 +1,57 @@
 """
-TODO: completa el docstring de este módulo.
-Debe indicar brevemente que este módulo define la clase "Contacto", que
-representa un contacto de una agenda telefónica.
+Módulo que define la clase :class:`Contacto`, un contacto de una agenda telefónica.
 """
 
 
 class Contacto:
     """
-    TODO: completa este docstring en formato reST (estilo Sphinx).
-    Debe describir la clase y documentar sus atributos usando los campos
-    ":ivar nombre:", ":ivar telefono:" y ":ivar favorito:".
+    Representa un contacto de una agenda telefónica.
+
+    :ivar nombre: El nombre del contacto.
+    :ivar telefono: El número de teléfono del contacto.
+    :ivar favorito: Indica si el contacto está marcado como favorito.
     """
 
     def __init__(self, nombre, telefono):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar los parámetros "nombre" y "telefono" usando los
-        campos ":param nombre:", ":type nombre:", ":param telefono:" y
-        ":type telefono:".
+        Inicializa un contacto.
+
+        :param nombre: El nombre del contacto.
+        :type nombre: str
+        :param telefono: El número de teléfono del contacto.
+        :type telefono: str
         """
-        # TODO: guarda "nombre" y "telefono" como atributos.
-        # TODO: inicializa un atributo "favorito" a False.
-        pass
+        self.nombre = nombre
+        self.telefono = telefono
+        self.favorito = False
 
     def marcar_como_favorito(self):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe describir que marca el contacto como favorito, documentando
-        en un campo ":return:" y ":rtype:" que no devuelve ningún valor
-        (devuelve "None").
+        Marca el contacto como favorito.
+
+        :return: No devuelve ningún valor.
+        :rtype: None
         """
-        # TODO: establece el atributo "favorito" a True.
-        pass
+        self.favorito = True
 
     def __repr__(self):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe describir que devuelve una representación en texto del
-        contacto, incluyendo como mínimo el nombre y el teléfono,
-        documentando el valor devuelto con ":return:" y ":rtype:".
+        Devuelve una representación en texto del contacto.
+
+        :return: El nombre y el teléfono del contacto.
+        :rtype: str
         """
-        # TODO: devuelve un string con, por ejemplo, el formato:
-        # "<nombre> (<telefono>)"
-        pass
+        return f"{self.nombre} ({self.telefono})"
 
     def __eq__(self, other):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe describir que dos contactos se consideran iguales si tienen
-        el mismo teléfono, documentando el parámetro "other" con
-        ":param other:"/":type other:" y el valor devuelto con
-        ":return:"/":rtype:".
+        Compara contactos por número de teléfono.
+
+        :param other: El objeto que se compara con este contacto.
+        :type other: object
+        :return: ``True`` si ambos contactos tienen el mismo teléfono.
+        :rtype: bool
         """
-        # TODO: si "other" no es una instancia de "Contacto", devuelve
-        # "NotImplemented".
-        # TODO: en caso contrario, devuelve True si ambos teléfonos
-        # coinciden.
-        pass
+        if not isinstance(other, Contacto):
+            return NotImplemented
+        return self.telefono == other.telefono

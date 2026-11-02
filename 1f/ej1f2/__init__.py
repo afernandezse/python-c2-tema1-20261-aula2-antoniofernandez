@@ -28,7 +28,10 @@ def opciones_del_tema(ruta_config: str = CONF_PATH) -> Dict[str, object]:
     """
     # TODO: ejecuta el contenido de "conf.py" y devuelve el valor de
     # "html_theme_options".
-    raise NotImplementedError
+    conf = {}
+    with open(ruta_config, "r") as f:
+        exec(f.read(), conf)
+    return conf.get("html_theme_options", {})
 
 
 if __name__ == "__main__":

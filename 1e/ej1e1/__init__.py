@@ -38,7 +38,11 @@ def info_proyecto(ruta: str = CONF_PATH) -> Dict[str, str]:
     # diccionario de espacio de nombres propio, y devuelve un diccionario
     # con las claves "project" y "author" tomadas de ese espacio de
     # nombres.
-    raise NotImplementedError
+
+    namespace = {}
+    with open(ruta, "r") as f:
+        exec(f.read(), namespace)
+    return {"project": namespace.get("project"), "author": namespace.get("author")}
 
 
 def paginas_del_indice(ruta: str = INDEX_PATH) -> List[str]:
@@ -54,7 +58,21 @@ def paginas_del_indice(ruta: str = INDEX_PATH) -> List[str]:
     # TODO: localiza el bloque ".. toctree::" y devuelve las líneas
     # indentadas que no son opciones (no empiezan por ":"), ignorando las
     # líneas en blanco.
-    raise NotImplementedError
+    
+    with open(ruta, "r") as f:
+        content = f.read()
+
+    # Encuentra el bloque ".. toctree::"
+    toctree_match = re.search(r"\.\. toctree::\n((?:\s+.*\n)+)", content)
+    if not toctree_match:
+        return []
+
+    # Extrae las líneas indentadas que no son opciones
+    toctree_content = toctree_match.group(1)
+    lines = toctree_content.split('\n')
+    pages = [line.strip() for line in lines if line.strip() and not line.strip().startswith(':')]
+
+    return pages
 
 
 if __name__ == "__main__":

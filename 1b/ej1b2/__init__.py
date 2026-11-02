@@ -14,6 +14,7 @@ funcionalidades del tema, implementa en este módulo las funciones:
 import os
 from typing import Dict, List
 
+from mkdocs import config
 import yaml
 
 EJ_DIR = os.path.dirname(__file__)
@@ -30,7 +31,9 @@ def paleta_de_colores(ruta_config: str = MKDOCS_CONFIG_PATH) -> Dict[str, str]:
         Diccionario con, como mínimo, las claves "primary" y "accent".
     """
     # TODO: carga el archivo YAML y devuelve "theme.palette".
-    raise NotImplementedError
+    with open(ruta_config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    return config.get("theme", {}).get("palette", {})
 
 
 def funcionalidades_activadas(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str]:
@@ -44,7 +47,10 @@ def funcionalidades_activadas(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str
         "navigation.tabs").
     """
     # TODO: carga el archivo YAML y devuelve "theme.features".
-    raise NotImplementedError
+    with open(ruta_config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    return config.get("theme", {}).get("features", [])
+
 
 
 if __name__ == "__main__":

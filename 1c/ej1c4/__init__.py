@@ -50,56 +50,86 @@ documentación generada.
 """
 
 # TODO: importa "List" y "Optional" desde "typing".
+from typing import List, Optional
 
 
 class Producto:
     """
-    TODO: completa este docstring en formato Google.
-    Debe describir la clase y documentar sus atributos en una sección
-    "Attributes:", sin repetir los tipos (ya indicados mediante type
-    hints en el código).
+    Esta clase representa un producto en el inventario de la tienda.
+    Attributes:
+        nombre: el nombre del producto.
+        precio: el precio unitario del producto.
+        stock: la cantidad disponible en inventario.
+
     """
 
-    def __init__(self, nombre, precio, stock=0):
+    def __init__(self, nombre: str, precio: float, stock: int = 0):
         """
-        TODO: añade anotaciones de tipo a "nombre" (str), "precio" (float)
-        y "stock" (int), y completa el docstring con una sección "Args:"
-        (sin repetir los tipos).
+        Inicializa un producto con un nombre, precio y cantidad en stock.
+
+        Args:
+            nombre: el nombre del producto.
+            precio: el precio unitario del producto.
+            stock: la cantidad disponible en inventario.
         """
         # TODO: guarda "nombre", "precio" y "stock" como atributos.
+        self.nombre = nombre
+        self.precio = precio
+        self.stock = stock
+
         pass
 
-    def vender(self, cantidad):
+    def vender(self, cantidad: int) -> bool:
         """
-        TODO: añade anotaciones de tipo a "cantidad" (int) y al valor de
-        retorno (bool), y completa el docstring con las secciones
-        "Args:" y "Returns:" (sin repetir los tipos).
+        Este método intenta vender una cantidad de este producto, descontando
+        del stock si hay suficiente.
+
+        Args:
+            cantidad: Cantidad de unidades que se intenta vender.
+
+        Returns:
+            True si hay stock suficiente y se realiza la venta; False en caso contrario.
         """
         # TODO: si no hay stock suficiente ("cantidad" > "stock"), no
         # modifiques nada y devuelve False.
-        # TODO: si hay stock suficiente, descuenta "cantidad" de "stock" y
-        # devuelve True.
-        pass
+        if cantidad > self.stock:
+            return False
+        else:
+            self.stock -= cantidad
+            return True
 
 
-def buscar_producto(productos, nombre):
+def buscar_producto(productos: List[Producto], nombre: str) -> Optional[Producto]:
     """
-    TODO: añade anotaciones de tipo a "productos" (List[Producto]) y
-    "nombre" (str), así como al valor de retorno (Optional[Producto]), y
-    completa el docstring con las secciones "Args:" y "Returns:" (sin
-    repetir los tipos).
+    Este método busca un producto por nombre en la lista de productos.
+    Args:
+        productos: lista de productos a buscar.
+        nombre: nombre del producto a buscar.
+    Returns:
+        El primer producto cuyo nombre coincida con "nombre", o "None" si no
+        se encuentra ninguno.
     """
     # TODO: devuelve el primer producto de "productos" cuyo nombre
     # coincida con "nombre", o "None" si no se encuentra ninguno.
+    for producto in productos:
+        if producto.nombre == nombre:
+            return producto
+    return None
     pass
 
 
-def valor_total_inventario(productos):
+def valor_total_inventario(productos: List[Producto]) -> float:
     """
-    TODO: añade anotaciones de tipo a "productos" (List[Producto]) y al
-    valor de retorno (float), y completa el docstring con las secciones
-    "Args:" y "Returns:" (sin repetir los tipos).
+    Este método calcula el valor total del inventario, sumando el precio
+    multiplicado por el stock de cada producto.
+    Args:
+        productos: lista de productos a evaluar.
+    Returns:
+        La suma de "precio * stock" de todos los productos, o 0.0 si la lista está vacía.
     """
     # TODO: devuelve la suma de "precio * stock" de todos los productos de
     # "productos" (0.0 si la lista está vacía).
-    pass
+    total = 0.0
+    for producto in productos:
+        total += producto.precio * producto.stock
+    return total

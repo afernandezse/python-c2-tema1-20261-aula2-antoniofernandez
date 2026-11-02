@@ -19,4 +19,8 @@
 site_name: Mi Proyecto Documentado
 
 # TODO: completa la lista "nav" con las 4 páginas indicadas en el enunciado.
-nav: []
+nav: 
+  - Inicio: index.md
+  - Instalación: instalacion.md
+  - Referencia de la API: api.md
+  - Despliegue: despliegue.md

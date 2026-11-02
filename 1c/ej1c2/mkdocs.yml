@@ -16,9 +16,13 @@
 
 site_name: Mi Proyecto Documentado
 
-# TODO: completa la lista de "plugins" con "search" y "mkdocstrings"
-# (indicando "handlers.python.paths: [src]").
-plugins: []
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - src
 #
 # Consulta también "__init__.py" en esta misma carpeta para completar la
 # parte en Python de este ejercicio.

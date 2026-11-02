@@ -15,7 +15,7 @@ site_name: Mi Proyecto Documentado
 
 # TODO: cambia el nombre del tema a "material".
 theme:
-  name: mkdocs
+  name: material
 #
 # Consulta también "__init__.py" en esta misma carpeta para completar la
 # parte en Python de este ejercicio.

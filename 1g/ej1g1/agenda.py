@@ -1,7 +1,6 @@
 """
-TODO: completa el docstring de este módulo.
-Debe indicar brevemente que este módulo define la clase "Agenda", que
-representa una colección de contactos ("Contacto").
+Módulo que define la clase Agenda, que representa una agenda de contactos.
+
 """
 
 from .excepciones import ContactoNoEncontradoError
@@ -9,53 +8,61 @@ from .excepciones import ContactoNoEncontradoError
 
 class Agenda:
     """
-    TODO: completa este docstring en formato reST (estilo Sphinx).
-    Debe describir la clase y documentar sus atributos usando los campos
-    ":ivar nombre:" y ":ivar contactos:".
+    Clase que representa una agenda de contactos.
+
+    :ivar nombre: El nombre de la agenda.
+    :ivar contactos: La lista de contactos en la agenda.
     """
 
     def __init__(self, nombre):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar el parámetro "nombre" usando ":param nombre:" y
-        ":type nombre:".
+        Inicializa una agenda vacía.
+
+        :param nombre: El nombre de la agenda.
+        :type nombre: str
         """
-        # TODO: guarda "nombre" como atributo.
-        # TODO: inicializa un atributo "contactos" como una lista vacía.
-        pass
+        self.nombre = nombre
+        self.contactos = []
 
     def añadir_contacto(self, contacto):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar el parámetro "contacto" usando ":param contacto:"
-        y ":type contacto:".
+        Añade un contacto a la agenda.
+
+        :param contacto: El contacto a añadir.
+        :type contacto: Contacto
         """
-        # TODO: añade "contacto" a la lista de contactos.
-        pass
+        self.contactos.append(contacto)
 
     def buscar_por_telefono(self, telefono):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar el parámetro "telefono" (":param telefono:",
-        ":type telefono:"), el valor devuelto (":return:", ":rtype:") y
-        la excepción que puede lanzar (":raises ContactoNoEncontradoError:").
+        Busca un contacto por su número de teléfono.
+
+        :param telefono: El número de teléfono del contacto a buscar.
+        :type telefono: str
+        :return: El contacto con el número de teléfono especificado.
+        :rtype: Contacto
+        :raises ContactoNoEncontradoError: Si no se encuentra ningún contacto con ese teléfono.
         """
-        # TODO: busca y devuelve el contacto con ese teléfono.
-        # TODO: si no se encuentra, lanza "ContactoNoEncontradoError".
-        pass
+        for contacto in self.contactos:
+            if contacto.telefono == telefono:
+                return contacto
+        raise ContactoNoEncontradoError("Contacto no encontrado")
 
     def buscar_favoritos(self):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar el valor devuelto usando ":return:" y ":rtype:".
+        Busca los contactos marcados como favoritos.
+
+        :return: La lista de contactos marcados como favoritos.
+        :rtype: list
         """
-        # TODO: devuelve la lista de contactos marcados como favoritos.
-        pass
+        favoritos = [contacto for contacto in self.contactos if contacto.favorito]
+        return favoritos
 
     def __len__(self):
         """
-        TODO: completa este docstring en formato reST (estilo Sphinx).
-        Debe documentar el valor devuelto usando ":return:" y ":rtype:".
+        Devuelve el número de contactos de la agenda.
+
+        :return: El número de contactos de la agenda.
+        :rtype: int
         """
-        # TODO: devuelve el número de contactos de la agenda.
-        pass
+        return len(self.contactos)

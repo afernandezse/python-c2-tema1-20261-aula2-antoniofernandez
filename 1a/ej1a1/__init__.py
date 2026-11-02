@@ -46,7 +46,13 @@ def titulos_del_menu(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str]:
     """
     # TODO: abre y carga el archivo YAML indicado por "ruta_config" y
     # devuelve la lista de títulos de "nav", en orden.
-    raise NotImplementedError
+
+
+    with open(ruta_config, "r") as f:
+        config = yaml.safe_load(f)
+    return [item['title'] for item in config['nav']]
+
+
 
 
 def comando_mkdocs_serve(puerto: int = 8000) -> List[str]:
@@ -65,7 +71,9 @@ def comando_mkdocs_serve(puerto: int = 8000) -> List[str]:
         ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8000"].
     """
     # TODO: construye y devuelve la lista de argumentos del comando.
+    return ["mkdocs", "serve", "--dev-addr", f"127.0.0.1:{puerto}"]
     raise NotImplementedError
+
 
 
 if __name__ == "__main__":

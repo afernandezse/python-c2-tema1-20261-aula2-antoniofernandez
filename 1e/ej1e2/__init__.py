@@ -42,7 +42,13 @@ def titulo_principal(ruta: str = OVERVIEW_PATH) -> str:
     """
     # TODO: busca una línea de texto seguida de una línea de "=" y
     # devuelve el texto de la primera línea.
-    raise NotImplementedError
+
+    with open(ruta, encoding="utf-8") as f:
+        contenido = f.read()
+        titulo_match = re.search(r"^(.+)$\n=+$", contenido, re.MULTILINE)
+        if titulo_match:
+            return titulo_match.group(1).strip()
+    return ""   
 
 
 def elementos_de_lista(ruta: str = OVERVIEW_PATH) -> List[str]:
@@ -56,7 +62,13 @@ def elementos_de_lista(ruta: str = OVERVIEW_PATH) -> List[str]:
     """
     # TODO: localiza las líneas de lista ("- elemento") y devuelve su
     # contenido, sin el guion inicial.
-    raise NotImplementedError
+    with open(ruta, encoding="utf-8") as f:
+        contenido = f.read()
+        lista_match = re.search(r"^- (.+)$", contenido, re.MULTILINE)
+        if lista_match:
+            elementos = re.findall(r"^- (.+)$", contenido, re.MULTILINE)
+            return [elemento.strip() for elemento in elementos]
+    return []
 
 
 def referencias_cruzadas(ruta: str = OVERVIEW_PATH) -> List[str]:
@@ -71,7 +83,11 @@ def referencias_cruzadas(ruta: str = OVERVIEW_PATH) -> List[str]:
     """
     # TODO: busca todas las coincidencias del rol ":doc:" (con o sin
     # texto visible) y devuelve la lista de rutas.
-    raise NotImplementedError
+    with open(ruta, encoding="utf-8") as f:
+        contenido = f.read()
+        referencias = re.findall(r":doc:`(?:[^<]+)<([^`]+)>`|:doc:`([^`]+)`", contenido)
+        return [ruta for ruta in referencias if ruta]  # Filtra las tuplas vacías   
+    
 
 
 if __name__ == "__main__":

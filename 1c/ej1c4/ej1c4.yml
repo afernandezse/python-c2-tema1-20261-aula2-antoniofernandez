@@ -22,6 +22,6 @@ plugins:
       handlers:
         python:
           paths: [src]
-          # TODO: completa la clave "options" con "docstring_style: google"
-          # y "show_signature_annotations: true".
-          options: {}
+          options:
+            docstring_style: google
+            show_signature_annotations: true

@@ -32,7 +32,10 @@ def tema_configurado(ruta_config: str = CONF_PATH) -> str:
     """
     # TODO: ejecuta el contenido de "conf.py" (por ejemplo con "exec"
     # sobre un diccionario propio) y devuelve el valor de "html_theme".
-    raise NotImplementedError
+    contexto = {}
+    with open(ruta_config, "r", encoding="utf-8") as f:
+        exec(f.read(), contexto)
+    return contexto.get("html_theme", "")
 
 
 def dependencias(ruta_requirements: str = REQUIREMENTS_PATH) -> List[str]:
@@ -46,7 +49,13 @@ def dependencias(ruta_requirements: str = REQUIREMENTS_PATH) -> List[str]:
     """
     # TODO: lee el archivo de requisitos y devuelve la lista de paquetes,
     # ignorando las líneas vacías y las que empiezan por "#".
-    raise NotImplementedError
+    dependencias = []
+    with open(ruta_requirements, "r", encoding="utf-8") as f:
+        for linea in f:
+            linea = linea.strip()
+            if linea and not linea.startswith("#"):
+                dependencias.append(linea)
+    return dependencias
 
 
 if __name__ == "__main__":

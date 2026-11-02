@@ -28,9 +28,9 @@ def modulos_referenciados(ruta: str = API_PATH) -> List[str]:
         Lista de nombres de módulo (por ejemplo, ["ej1c1.libro",
         "ej1c1.coleccion"]), en el orden en que aparecen en la página.
     """
-    # TODO: busca todas las líneas "::: nombre_del_modulo" y devuelve la
-    # lista de nombres de módulo, en orden.
-    raise NotImplementedError
+    with open(ruta, "r", encoding="utf-8") as archivo:
+        contenido = archivo.read()
+    return re.findall(r"(?m)^\s*:::\s*(\S+)\s*$", contenido)
 
 
 if __name__ == "__main__":

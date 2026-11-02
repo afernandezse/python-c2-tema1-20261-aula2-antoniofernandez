@@ -32,7 +32,11 @@ def tema_configurado(ruta_config: str = MKDOCS_CONFIG_PATH) -> str:
         Nombre del tema configurado (por ejemplo, "material").
     """
     # TODO: carga el archivo YAML y devuelve "theme.name".
-    raise NotImplementedError
+
+    with open(ruta_config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+
+    return config.get("theme", {}).get("name", "mkdocs")
 
 
 def dependencias(ruta_requirements: str = REQUIREMENTS_PATH) -> List[str]:
@@ -46,7 +50,14 @@ def dependencias(ruta_requirements: str = REQUIREMENTS_PATH) -> List[str]:
     """
     # TODO: lee el archivo de requisitos y devuelve la lista de paquetes,
     # ignorando las líneas vacías y las que empiezan por "#".
-    raise NotImplementedError
+    with open(ruta_requirements, "r", encoding="utf-8") as f:
+        lines = f.readlines()   
+
+    dependencies = [
+        line.strip() for line in lines if line.strip() and not line.strip().startswith("#")
+    ]   
+
+    return dependencies
 
 
 if __name__ == "__main__":

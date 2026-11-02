@@ -40,8 +40,9 @@ def bloques_de_codigo(ruta: str = INSTALACION_PATH) -> List[Tuple[str, str]]:
     """
     # TODO: busca todos los bloques ```<lenguaje>\n...``` y devuelve una
     # lista de tuplas (lenguaje, contenido).
-    raise NotImplementedError
-
+    contenido = _leer(ruta)
+    bloques = re.findall(r"```(\w+)\n(.*?)```", contenido, re.DOTALL)
+    return [(lenguaje, bloque.strip()) for lenguaje, bloque in bloques]
 
 def comando_de_instalacion(ruta: str = INSTALACION_PATH) -> Optional[str]:
     """Devuelve el comando "pip install" del bloque de código "bash".
@@ -55,7 +56,13 @@ def comando_de_instalacion(ruta: str = INSTALACION_PATH) -> Optional[str]:
     """
     # TODO: localiza el bloque de código "bash" y devuelve la línea que
     # contiene "pip install".
-    raise NotImplementedError
+    bloques = bloques_de_codigo(ruta)
+    for lenguaje, bloque in bloques:
+        if lenguaje == "bash":
+            for linea in bloque.splitlines():
+                if "pip install" in linea:
+                    return linea.strip()
+    return None
 
 
 if __name__ == "__main__":

@@ -37,9 +37,11 @@ def titulo_principal(ruta: str = INDEX_PATH) -> str:
     Returns:
         Texto del título de nivel 1, sin el "# " inicial.
     """
-    # TODO: busca la primera línea que empieza por "# " y devuelve su
-    # contenido (sin el "# " inicial ni espacios sobrantes).
-    raise NotImplementedError
+    contenido = _leer(ruta)
+    match = re.search(r"^# (.+)$", contenido, re.MULTILINE)
+    if match:
+        return match.group(1).strip()
+    raise ValueError("El archivo Markdown no contiene un título de nivel 1")
 
 
 def elementos_de_lista(ruta: str = INDEX_PATH) -> List[str]:
@@ -52,9 +54,19 @@ def elementos_de_lista(ruta: str = INDEX_PATH) -> List[str]:
         Lista con el texto de cada elemento (sin el marcador "-", "*" o
         "1.", "2.", etc.).
     """
-    # TODO: localiza las líneas de lista (ordenada o no ordenada) y
-    # devuelve su contenido, sin el marcador inicial.
-    raise NotImplementedError
+    patron = re.compile(r"^\s*(?:[-*]|\d+\.)\s+(.+?)\s*$")
+    elementos: List[str] = []
+    en_lista = False
+
+    for linea in _leer(ruta).splitlines():
+        match = patron.match(linea)
+        if match:
+            elementos.append(match.group(1).strip())
+            en_lista = True
+        elif en_lista:
+            break
+
+    return elementos
 
 
 def enlaces_internos(ruta: str = INDEX_PATH) -> Dict[str, str]:
@@ -68,9 +80,9 @@ def enlaces_internos(ruta: str = INDEX_PATH) -> Dict[str, str]:
         a la que apunta, por ejemplo
         {"Instalación": "instalacion.md"}.
     """
-    # TODO: busca todas las coincidencias de "[texto](ruta)" y devuélvelas
-    # como un diccionario texto -> ruta.
-    raise NotImplementedError
+    contenido = _leer(ruta)
+    enlaces = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", contenido)
+    return {texto: ruta for texto, ruta in enlaces}
 
 
 if __name__ == "__main__":

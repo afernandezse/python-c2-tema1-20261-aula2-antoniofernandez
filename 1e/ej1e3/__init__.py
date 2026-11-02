@@ -42,7 +42,16 @@ def bloques_de_codigo(ruta: str = INSTALACION_PATH) -> List[Tuple[str, str]]:
     """
     # TODO: busca todas las directivas ".. code-block:: <lenguaje>" y
     # devuelve una lista de tuplas (lenguaje, contenido desindentado).
-    raise NotImplementedError
+    
+    content = _leer(ruta)
+    pattern = r'(?m)^\.\. code-block::\s*(\w+)[ \t]*\n((?:\n|[ \t]+.*\n)+)'
+    matches = re.findall(pattern, content)
+    bloques = []
+    for lenguaje, bloque in matches:
+        # Desindentamos el contenido del bloque
+        desindentado = textwrap.dedent(bloque).strip()
+        bloques.append((lenguaje, desindentado))
+    return bloques
 
 
 def comando_de_instalacion(ruta: str = INSTALACION_PATH) -> Optional[str]:
@@ -57,7 +66,12 @@ def comando_de_instalacion(ruta: str = INSTALACION_PATH) -> Optional[str]:
     """
     # TODO: localiza el bloque de código "bash" y devuelve la línea que
     # contiene "pip install".
-    raise NotImplementedError
+    for lenguaje, bloque in bloques_de_codigo(ruta):
+        if lenguaje == "bash":
+            for linea in bloque.splitlines():
+                if "pip install" in linea:
+                    return linea.strip()
+    return None
 
 
 def admonitions(ruta: str = INSTALACION_PATH) -> Dict[str, str]:
@@ -72,7 +86,14 @@ def admonitions(ruta: str = INSTALACION_PATH) -> Dict[str, str]:
     """
     # TODO: busca todas las directivas ".. tipo::" (note, warning, etc.)
     # y devuelve un diccionario tipo -> contenido desindentado.
-    raise NotImplementedError
+    content = _leer(ruta)
+    pattern = r'(?m)^\.\. (\w+)::[ \t]*\n((?:\n|[ \t]+.*\n)+)'
+    matches = re.findall(pattern, content)
+    admonitions_dict = {}
+    for tipo, bloque in matches:
+        desindentado = textwrap.dedent(bloque).strip()
+        admonitions_dict[tipo] = desindentado
+    return admonitions_dict
 
 
 if __name__ == "__main__":

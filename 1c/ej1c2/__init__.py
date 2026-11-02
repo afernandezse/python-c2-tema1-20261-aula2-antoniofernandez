@@ -42,7 +42,9 @@ def plugins_configurados(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str]:
     # TODO: carga el archivo YAML y devuelve los nombres de los elementos
     # de la lista "plugins" (cada elemento puede ser una cadena o un
     # diccionario de una sola clave).
-    raise NotImplementedError
+    with open(ruta_config, "r") as f:
+        config = yaml.safe_load(f)
+    return [plugin if isinstance(plugin, str) else list(plugin.keys())[0] for plugin in config.get("plugins", [])]
 
 
 def rutas_de_mkdocstrings(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str]:
@@ -57,7 +59,10 @@ def rutas_de_mkdocstrings(ruta_config: str = MKDOCS_CONFIG_PATH) -> List[str]:
     """
     # TODO: carga el archivo YAML, localiza el plugin "mkdocstrings" y
     # devuelve "handlers.python.paths".
-    raise NotImplementedError
+    with open(ruta_config, "r") as f:
+        config = yaml.safe_load(f)
+    mkdocstrings_plugin = _find_plugin(config.get("plugins", []), "mkdocstrings")
+    return mkdocstrings_plugin.get("handlers", {}).get("python", {}).get("paths", [])
 
 
 if __name__ == "__main__":

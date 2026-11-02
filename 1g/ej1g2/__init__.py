@@ -38,7 +38,9 @@ def extensiones_activadas(ruta_config: str = CONF_PATH) -> List[str]:
     """
     # TODO: ejecuta el contenido de "conf.py" (por ejemplo con "exec"
     # sobre un diccionario propio) y devuelve el valor de "extensions".
-    raise NotImplementedError
+    dict_conf = {}
+    exec(_leer(ruta_config), dict_conf)
+    return dict_conf.get("extensions", [])
 
 
 def rutas_en_sys_path(ruta_config: str = CONF_PATH) -> List[str]:
@@ -54,7 +56,12 @@ def rutas_en_sys_path(ruta_config: str = CONF_PATH) -> List[str]:
     # TODO: busca todas las llamadas "sys.path.insert(...)" o
     # "sys.path.append(...)" en el texto de "conf.py" y devuelve la lista
     # de rutas (el argumento que contiene la ruta, como cadena de texto).
-    raise NotImplementedError
+    rutas = []
+    contenido = _leer(ruta_config)
+    # Expresión regular para encontrar sys.path.insert(...) o sys.path.append(...)
+    patron = r'sys\.path\.(?:insert|append)\(\s*\d*\s*,\s*os\.path\.abspath\(\s*[\'"]([^\'"]+)[\'"]\s*\)\s*\)'
+    rutas = re.findall(patron, contenido)
+    return rutas
 
 
 if __name__ == "__main__":

@@ -24,6 +24,8 @@ parte en Python de este ejercicio.
 
 # Notas y advertencias
 
-TODO: añade aquí una admonition "!!! note" con una nota.
+!!! note
+    Esta es una nota informativa sobre el uso de admonitions en MkDocs.
 
-TODO: añade aquí una admonition "!!! warning" con una advertencia.
+!!! warning
+    Asegúrate de activar la extensión "admonition" en la configuración de MkDocs antes de usar este tipo de cajas.

@@ -17,4 +17,4 @@ author = "Estudiante"
 extensions = []
 
 # TODO: cambia el valor de "html_theme" a "sphinx_rtd_theme".
-html_theme = "alabaster"
+html_theme = "sphinx_rtd_theme"  # Valor por defecto, cambiar a "sphinx_rtd_theme"

@@ -16,9 +16,9 @@
 # Configuración del proyecto -------------------------------------------
 
 # TODO: asigna a "project" el valor "Mi Proyecto Documentado".
-project = ""
+project = "Mi Proyecto Documentado"
 
 # TODO: asigna a "author" tu nombre (cualquier cadena no vacía).
-author = ""
+author = "AFS"
 
 extensions = []

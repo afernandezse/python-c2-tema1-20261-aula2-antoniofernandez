@@ -29,26 +29,33 @@ entrada del paquete y como fichero que expone su API pública, es:
    con un docstring en formato Google (con una sección "Returns:").
 """
 
-# TODO: importa "Libro" desde ".libro" (import relativo).
-# TODO: importa "ColeccionLibros" desde ".coleccion" (import relativo).
-# TODO: importa "LibroNoEncontradoError" desde ".excepciones" (import
-# relativo).
+from .coleccion import ColeccionLibros
+from .excepciones import LibroNoEncontradoError
+from .libro import Libro
 
-# TODO: completa "__all__" con los nombres de las clases/excepciones
-# importadas anteriormente, además de "cargar_libros_iniciales".
-__all__ = []
+__all__ = [
+    "Libro",
+    "ColeccionLibros",
+    "LibroNoEncontradoError",
+    "cargar_libros_iniciales",
+]
 
 
 def cargar_libros_iniciales():
+    """Crea una colección de libros de ejemplo.
+
+    Returns:
+        ColeccionLibros: Una colección con tres libros iniciales.
     """
-    TODO: completa este docstring en formato Google.
-    Debe describir la función y documentar el valor devuelto en una
-    sección "Returns:".
-    """
-    # TODO: crea una "ColeccionLibros" llamada, por ejemplo, "Mi biblioteca"
-    # y añádele 3 objetos "Libro" de ejemplo (con título, autor, año e
-    # ISBN distintos). Devuelve la colección resultante.
-    pass
+    coleccion = ColeccionLibros("Mi biblioteca")
+    coleccion.añadir_libro(Libro("Dune", "Frank Herbert", 1965, "9780441172719"))
+    coleccion.añadir_libro(
+        Libro("Fundación", "Isaac Asimov", 1951, "9780553293357")
+    )
+    coleccion.añadir_libro(
+        Libro("Cien años de soledad", "Gabriel García Márquez", 1967, "9780307474728")
+    )
+    return coleccion
 
 
 if __name__ == "__main__":

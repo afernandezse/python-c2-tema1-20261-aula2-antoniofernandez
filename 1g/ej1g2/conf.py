@@ -30,9 +30,11 @@ author = "Estudiante"
 # TODO: inserta en "sys.path" la ruta donde se encuentra el paquete
 # "ej1g1", es decir, la carpeta "1g/" (un nivel por encima de este
 # archivo "conf.py").
+sys.path.insert(0, os.path.abspath('../1g'))
+
 
 # TODO: completa la lista "extensions" con "sphinx.ext.autodoc" y
 # "sphinx.ext.napoleon".
-extensions = []
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
 
 html_theme = "sphinx_rtd_theme"

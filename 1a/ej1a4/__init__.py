@@ -19,18 +19,25 @@ NOTAS_PATH = os.path.join(EJ_DIR, "notas.md")
 
 
 def admonitions(ruta: str = NOTAS_PATH) -> Dict[str, str]:
-    """Devuelve el contenido de cada admonition de la página.
+    """Devuelve el contenido de cada admonition de la página."""
 
-    Args:
-        ruta: Ruta al archivo Markdown que se quiere analizar.
+    content = {}
 
-    Returns:
-        Diccionario que asocia el tipo de admonition ("note", "warning",
-        etc.) con su contenido, sin la indentación de 4 espacios.
-    """
-    # TODO: busca todas las admonitions "!!! tipo" y devuelve un
-    # diccionario tipo -> contenido (sin indentar).
-    raise NotImplementedError
+    with open(ruta, "r", encoding="utf-8") as f:
+        text = f.read()
+
+    admonition_pattern = r"^!!![ \t]+(\w+)[ \t]*\n((?:[ ]{4}.*(?:\n|$))+)"
+
+    matches = re.findall(admonition_pattern, text, re.MULTILINE)
+
+    for tipo, bloque in matches:
+        contenido = "\n".join(
+            linea[4:] for linea in bloque.splitlines()
+        ).strip()
+
+        content[tipo] = contenido
+
+    return content
 
 
 if __name__ == "__main__":

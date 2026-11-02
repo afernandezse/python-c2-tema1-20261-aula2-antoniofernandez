@@ -30,7 +30,11 @@ def modulos_referenciados(ruta: str = API_PATH) -> List[str]:
     """
     # TODO: busca todas las directivas ".. automodule:: nombre_del_modulo"
     # y devuelve la lista de nombres de módulo, en orden.
-    raise NotImplementedError
+    list_modulos = []
+    with open(ruta, "r", encoding="utf-8") as f:
+        contenido = f.read()
+        list_modulos = re.findall(r"\.\. automodule:: (\S+)", contenido)
+    return list_modulos
 
 
 if __name__ == "__main__":

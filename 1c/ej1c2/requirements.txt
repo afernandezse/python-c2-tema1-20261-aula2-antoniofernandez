@@ -1,3 +1,4 @@
 # TODO: añade aquí la dependencia necesaria para usar el plugin mkdocstrings
 # con soporte para Python.
 mkdocs
+mkdocstrings[python]
